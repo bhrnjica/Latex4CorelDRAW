@@ -45,8 +45,17 @@ namespace Latex4CorelDraw
 
         private void btn_addEquation_Click(object sender, RoutedEventArgs e)
         {
-            string template = "\\begin{equation*}\r\n\t<Enter latex code>\r\n\\end{equation*}\r\n";
-            createLatexObject(template, "Create latex equation");
+            try
+            {
+                string template = "\\begin{equation*}\r\n\t<Enter latex code>\r\n\\end{equation*}\r\n";
+                createLatexObject(template, "Create latex equation");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Latex4Corel");
+                //throw;
+            }
         }
 
         public void createLatexObject(string template, string title)
@@ -82,26 +91,53 @@ namespace Latex4CorelDraw
 
         private void btn_editLatex_Click(object sender, RoutedEventArgs e)
         {
-            Corel.Interop.VGCore.ShapeRange sel = corelApp.ActiveDocument.SelectionRange;
-            bool found = false;
-            foreach (Corel.Interop.VGCore.Shape s in sel)
+            try
             {
-                if (editLatexObject(s))
-                    found = true;
+                Corel.Interop.VGCore.ShapeRange sel = corelApp.ActiveDocument.SelectionRange;
+                bool found = false;
+                foreach (Corel.Interop.VGCore.Shape s in sel)
+                {
+                    if (editLatexObject(s))
+                        found = true;
+                }
+                if (!found)
+                    createLatexObject(null, "Create latex object");
             }
-            if (!found)
-                createLatexObject(null, "Create latex object");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Latex4Corel");
+                //throw;
+            }
+           
         }
 
         private void btn_addLatex_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
             createLatexObject(null, "Create latex object");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Latex4Corel");
+                //throw;
+            }
         }
 
         private void btn_addEqnarray_Click(object sender, RoutedEventArgs e)
         {
-            string template = "\\begin{eqnarray*}\r\n\t<Enter latex code>\r\n\\end{eqnarray*}\r\n";
-            createLatexObject(template, "Create latex equation array");
+            try
+            {
+                string template = "\\begin{eqnarray*}\r\n\t<Enter latex code>\r\n\\end{eqnarray*}\r\n";
+                createLatexObject(template, "Create latex equation array");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Latex4Corel");
+                //throw;
+            }
         }
     }
 }

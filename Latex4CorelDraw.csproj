@@ -12,6 +12,8 @@
     <AssemblyName>Latex4CorelDraw</AssemblyName>
     <!--<TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>-->
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,8 +34,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Corel.Interop.VGCore, Version=21.1.0.643, Culture=neutral, PublicKeyToken=e4835428e22ad6f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Program Files\Corel\CorelDRAW Graphics Suite 2019\Programs64\Assemblies\Corel.Interop.VGCore.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.21.0.Corel.Interop.VGCore, Version=21.1.0.643, Culture=neutral, PublicKeyToken=e4835428e22ad6f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Corel\CorelDRAW Graphics Suite 2019\Programs64\Assemblies\policy.21.0.Corel.Interop.VGCore.dll</HintPath>
+    </Reference>
     <Reference Include="ScintillaNET, Version=2.6.0.0, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ScintillaNET\ScintillaNET.dll</HintPath>
@@ -50,10 +63,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsBase" />
-    <Reference Include="c:\program files\corel\coreldraw graphics suite x8\programs64\Assemblies\Corel.Interop.VGCore.dll">
-      <Name>Corel.Interop.VGCore</Name>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddinUtilities.cs" />
@@ -148,17 +157,16 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-      if not exist "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" md "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)"
-      copy "$(TargetPath)" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)CorelDrw.addon" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)AppUI.xslt" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)UserUI.xslt" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)\ScintillaNET\SciLexer.dll" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)\ScintillaNET\SciLexer64.dll" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)\ScintillaNET\ScintillaNET.dll" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      copy "$(ProjectDir)\ScintillaNET\ScintillaNET.xml" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)" /y
-      if $(ConfigurationName) == Debug copy "$(TargetDir)\$(SolutionName).pdb" "c:\program files\corel\coreldraw graphics suite x8\programs64\addons\$(SolutionName)\$(SolutionName).pdb"
+    <PostBuildEvent>if not exist "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" md "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)"
+      copy "$(TargetPath)" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)CorelDrw.addon" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)AppUI.xslt" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)UserUI.xslt" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)\ScintillaNET\SciLexer.dll" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)\ScintillaNET\SciLexer64.dll" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)\ScintillaNET\ScintillaNET.dll" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      copy "$(ProjectDir)\ScintillaNET\ScintillaNET.xml" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)" /y
+      if $(ConfigurationName) == Debug copy "$(TargetDir)\$(SolutionName).pdb" "c:\program files\corel\CorelDRAW Graphics Suite 2019\programs64\addons\$(SolutionName)\$(SolutionName).pdb"
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
